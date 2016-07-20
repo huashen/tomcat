@@ -133,6 +133,7 @@ final class StandardWrapperValve
         // Allocate a servlet instance to process this request
         try {
             if (!unavailable) {
+                //找到servlet对应的class文件
                 servlet = wrapper.allocate();
             }
         } catch (UnavailableException e) {
@@ -181,6 +182,8 @@ final class StandardWrapperValve
         // Create the filter chain for this request
         ApplicationFilterFactory factory =
             ApplicationFilterFactory.getInstance();
+
+        //创建一个filterChain
         ApplicationFilterChain filterChain =
             factory.createFilterChain(request, wrapper, servlet);
         

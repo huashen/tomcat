@@ -70,6 +70,10 @@ import org.xml.sax.SAXParseException;
  * @author Remy Maucherat
  * @version $Id: Catalina.java 1495882 2013-06-23 19:56:10Z markt $
  */
+
+/**
+ * 触发对conf/server.xml文件的解析
+ */
 public class Catalina {
 
 
