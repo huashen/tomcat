@@ -34,6 +34,9 @@ import org.apache.catalina.connector.Connector;
  * @version $Id: Service.java 1200162 2011-11-10 05:37:57Z kkolinko $
  */
 
+/**
+ * Service 组装 Connector 和 Container，对外提供服务
+ */
 public interface Service extends Lifecycle {
 
     // ------------------------------------------------------------- Properties
@@ -42,6 +45,10 @@ public interface Service extends Lifecycle {
     /**
      * Return the <code>Container</code> that handles requests for all
      * <code>Connectors</code> associated with this Service.
+     */
+    /**
+     * 返回Container
+     * @return
      */
     public Container getContainer();
 
@@ -58,10 +65,18 @@ public interface Service extends Lifecycle {
      * the corresponding version number, in the format
      * <code>&lt;description&gt;/&lt;version&gt;</code>.
      */
+    /**
+     * 返回Service实现类的描述信息及格式化后的的对面版本号
+     * @return
+     */
     public String getInfo();
 
     /**
      * Return the name of this Service.
+     */
+    /**
+     * 返回Service的名称
+     * @return
      */
     public String getName();
 
@@ -69,6 +84,10 @@ public interface Service extends Lifecycle {
      * Set the name of this Service.
      *
      * @param name The new service name
+     */
+    /**
+     * 设置Service的名称
+     * @param name
      */
     public void setName(String name);
 
@@ -89,12 +108,20 @@ public interface Service extends Lifecycle {
      * {@link #getServer()} {@link Server#getParentClassLoader()}. If no server
      * has been set, return the system class loader.
      */
+    /**
+     * 获取父类的类加载器
+     * @return
+     */
     public ClassLoader getParentClassLoader();
 
     /**
      * Set the parent class loader for this service.
      *
      * @param parent The new parent class loader
+     */
+    /**
+     * 设置父类的类加载器
+     * @param parent
      */
     public void setParentClassLoader(ClassLoader parent);
 
@@ -107,10 +134,18 @@ public interface Service extends Lifecycle {
      *
      * @param connector The Connector to be added
      */
+    /**
+     * 添加Connector
+     * @param connector
+     */
     public void addConnector(Connector connector);
 
     /**
      * Find and return the set of Connectors associated with this Service.
+     */
+    /**
+     * 获取所有的Connector
+     * @return
      */
     public Connector[] findConnectors();
 
@@ -121,17 +156,29 @@ public interface Service extends Lifecycle {
      *
      * @param connector The Connector to be removed
      */
+    /**
+     * 移除Connector
+     * @param connector
+     */
     public void removeConnector(Connector connector);
 
     /**
      * Adds a named executor to the service
      * @param ex Executor
      */
+    /**
+     * 添加线程池
+     * @param ex
+     */
     public void addExecutor(Executor ex);
 
     /**
      * Retrieves all executors
      * @return Executor[]
+     */
+    /**
+     * 获取所有的线程池组
+     * @return
      */
     public Executor[] findExecutors();
 
@@ -140,11 +187,21 @@ public interface Service extends Lifecycle {
      * @param name String
      * @return Executor
      */
+    /**
+     * 根据名称获取线程池(没找到返回null)
+     *
+     * @param name
+     * @return
+     */
     public Executor getExecutor(String name);
 
     /**
      * Removes an executor from the service
      * @param ex Executor
+     */
+    /**
+     * 移除线程池
+     * @param ex
      */
     public void removeExecutor(Executor ex);
 

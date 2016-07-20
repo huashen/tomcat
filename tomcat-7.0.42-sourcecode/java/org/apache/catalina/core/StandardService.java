@@ -130,8 +130,12 @@ public class StandardService extends LifecycleMBeanBase implements Service {
     public void setContainer(Container container) {
 
         Container oldContainer = this.container;
+
+        //判断当前Service有没有已经关联Container，如果已经关联就去掉关联关系
         if ((oldContainer != null) && (oldContainer instanceof Engine))
             ((Engine) oldContainer).setService(null);
+
+        //替换新的关联，并启动新的Container的生命周期
         this.container = container;
         if ((this.container != null) && (this.container instanceof Engine))
             ((Engine) this.container).setService(this);
@@ -142,6 +146,8 @@ public class StandardService extends LifecycleMBeanBase implements Service {
                 // Ignore
             }
         }
+
+        //如果这个 oldContainer 已经被启动了，结束它的生命周期
         if (getState().isAvailable() && (oldContainer != null)) {
             try {
                 oldContainer.stop();
@@ -151,6 +157,7 @@ public class StandardService extends LifecycleMBeanBase implements Service {
         }
 
         // Report this property change to interested listeners
+        //将上面的过程通知感兴趣的事件监听程序
         support.firePropertyChange("container", oldContainer, this.container);
 
     }
