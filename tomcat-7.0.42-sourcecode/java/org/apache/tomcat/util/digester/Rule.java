@@ -27,6 +27,9 @@ import org.xml.sax.Attributes;
  * a corresponding nested pattern of XML elements has been matched.
  */
 
+/**
+ * Tomcat将server.xml文件中的所有元素上的属性都抽象为Rule
+ */
 public abstract class Rule {
 
 

@@ -513,15 +513,25 @@ public class JIoEndpoint extends AbstractEndpoint {
      *                  <code>false</code> is an indication to close the socket
      *                  immediately.
      */
+
+    /**
+     * 处理Socket
+     *
+     * @param socket
+     * @return
+     */
     protected boolean processSocket(Socket socket) {
         // Process the request from this socket
         try {
+            //将Socke封装为SocketWrapper
             SocketWrapper<Socket> wrapper = new SocketWrapper<Socket>(socket);
+            //给SocketWrapper设置连接保持时间keepAliveLeft。这个值是通过调用父类AbstractEndpoint的getMaxKeepAliveRequests方法
             wrapper.setKeepAliveLeft(getMaxKeepAliveRequests());
             // During shutdown, executor may be null - avoid NPE
             if (!running) {
                 return false;
             }
+            //创建SocketProcessor（此类也是JIoEndpoint的内部类，而且也实现了Runnable接口，见代码清单3），并使用线程池
             getExecutor().execute(new SocketProcessor(wrapper));
         } catch (RejectedExecutionException x) {
             log.warn("Socket processing request was rejected for:"+socket,x);

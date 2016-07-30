@@ -32,6 +32,10 @@ import org.apache.tomcat.util.res.StringManager;
  * state transition rules for {@link Lifecycle#start()} and
  * {@link Lifecycle#stop()}
  */
+
+/**
+ * 作为Lifecycle接口的抽象实现类，运用抽象模板模式将所有容器的生命周期及状态转换衔接起来，此外还提供了生成LifecycleEvent事件的接口
+ */
 public abstract class LifecycleBase implements Lifecycle {
 
     private static Log log = LogFactory.getLog(LifecycleBase.class);

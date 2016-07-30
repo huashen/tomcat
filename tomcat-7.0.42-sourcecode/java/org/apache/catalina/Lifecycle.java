@@ -100,6 +100,10 @@ package org.apache.catalina;
  * @author Craig R. McClanahan
  * @version $Id: Lifecycle.java 1200159 2011-11-10 05:33:31Z kkolinko $
  */
+
+/**
+ * 定义了容器生命周期、容器状态转换及容器状态迁移事件的监听器和移除等主要接口
+ */
 public interface Lifecycle {
 
 

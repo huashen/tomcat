@@ -258,6 +258,12 @@ public final class Bootstrap {
     /**
      * Load daemon.
      */
+    /**
+     * 用来加载tomcat的server.xml文件 通过反射调用Catalina.java的load方法
+     *
+     * @param arguments
+     * @throws Exception
+     */
     private void load(String[] arguments)
         throws Exception {
 

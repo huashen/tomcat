@@ -547,10 +547,16 @@ public class Catalina {
 
         long t1 = System.nanoTime();
 
+        /**
+         * 用于对catalina.home和catalina.base的一些检查工作
+         */
         initDirs();
 
         // Before digester - it may be needed
 
+        /**
+         * 给系统设置java.naming.factory.url.pkgs和java.naming.factory.initial
+         */
         initNaming();
 
         // Create and execute our Digester
